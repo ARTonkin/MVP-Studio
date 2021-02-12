@@ -1,6 +1,6 @@
 /*
 A.
-Display a list of all property names and their property id’s for Owner Id: 1426.
+Display a list of all property names and their property idâ€™s for Owner Id: 1426.
 */
 
 SELECT
@@ -101,16 +101,4 @@ FROM
 WHERE op.OwnerId = 1426 AND t.IsActive = 1
 ORDER BY p.Name;
 
-
-
-SELECT
-    c.CONSTRAINT_NAME,
-    cu.TABLE_NAME AS ReferencingTable, cu.COLUMN_NAME AS ReferencingColumn,
-    ku.TABLE_NAME AS ReferencedTable, ku.COLUMN_NAME AS ReferencedColumn
-FROM INFORMATION_SCHEMA.REFERENTIAL_CONSTRAINTS c
-INNER JOIN INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE cu
-ON cu.CONSTRAINT_NAME = c.CONSTRAINT_NAME
-INNER JOIN INFORMATION_SCHEMA.KEY_COLUMN_USAGE ku
-ON ku.CONSTRAINT_NAME = c.UNIQUE_CONSTRAINT_NAME
-WHERE ku.TABLE_NAME = 'JobStatus';
 
