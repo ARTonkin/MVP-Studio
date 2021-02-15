@@ -42,12 +42,15 @@ For each property in question a), return the following:
 
 SELECT
     p.Name,
-	TotalPayment = DATEDIFF(WEEK, tp.StartDate, tp.EndDate) / 
+	TotalPayment = 
 	CASE 
-		WHEN tpf.Code = 'Weekly' THEN 1
-		WHEN tpf.Code = 'Fortnightly' THEN 2
-		WHEN tpf.Code = 'Monthly' THEN 4 
-	END * tp.PaymentAmount, pf.Yield
+		WHEN tp.PaymentFrequencyId = 1 THEN 
+			DATEDIFF(WEEK, tp.StartDate, tp.EndDate) * tp.PaymentAmount
+		WHEN tp.PaymentFrequencyId = 2 THEN 
+			DATEDIFF(WEEK, tp.StartDate, tp.EndDate) / 2 * tp.PaymentAmount
+		WHEN tp.PaymentFrequencyId = 3 THEN 
+			DATEDIFF(MONTH, tp.StartDate, tp.EndDate) * tp.PaymentAmount
+	END, pf.Yield
 FROM
     Property p
         LEFT JOIN
@@ -68,12 +71,14 @@ Display all the jobs available.
 */
 
 SELECT DISTINCT 
-	j.JobDescription 
+	j.JobDescription
 FROM 
 	Job j
 		LEFT JOIN
 	JobStatus js ON j.JobStatusId = js.Id
-WHERE j.JobDescription IS NOT NULL AND js.Status = 'Open'
+		LEFT JOIN
+	JobMedia jm ON j.Id = jm.JobId
+WHERE js.Status = 'Open' AND jm.IsActive = 1
 ORDER BY j.JobDescription;
 
 
