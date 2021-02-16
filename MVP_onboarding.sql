@@ -114,5 +114,5 @@ FROM
 	TenantPaymentFrequencies tpf ON tp.PaymentFrequencyId = tpf.Id
 		LEFT JOIN
 	PropertyRentalPayment prp ON p.Id = prp.PropertyId
-WHERE op.OwnerId = 1426 AND t.IsActive = 1
+WHERE op.OwnerId = 1426
 ORDER BY p.Name;
