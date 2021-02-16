@@ -116,3 +116,47 @@ FROM
 	PropertyRentalPayment prp ON p.Id = prp.PropertyId
 WHERE op.OwnerId = 1426
 ORDER BY p.Name;
+
+
+/*
+2
+Report Datasets
+*/
+
+SELECT
+  PropertyExpense.Description
+  ,PropertyExpense.Amount
+  ,PropertyExpense.[Date]
+FROM
+  Property
+  INNER JOIN PropertyExpense
+    ON Property.Id = PropertyExpense.PropertyId
+WHERE
+  Property.Name LIKE @Name
+
+
+SELECT
+  Property.Bedroom
+  ,Property.Bathroom
+  ,PropertyRentalPayment.Amount
+  ,Address.Number
+  ,Address.Street
+  ,Address.Suburb
+  ,Person.FirstName
+  ,Person.LastName
+  ,OwnerProperty.OwnerId
+  ,Property.Name
+FROM
+  Property
+  INNER JOIN PropertyRentalPayment
+    ON Property.Id = PropertyRentalPayment.PropertyId
+  INNER JOIN OwnerProperty
+    ON Property.Id = OwnerProperty.PropertyId
+  INNER JOIN Person
+    ON OwnerProperty.OwnerId = Person.Id
+  INNER JOIN Address
+    ON Property.AddressId = Address.AddressId
+WHERE
+  Property.Name = @Name
+  AND Property.IsActive = N'True' 
+  
