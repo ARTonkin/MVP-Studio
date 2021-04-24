@@ -2,6 +2,8 @@
 
 These are some of the preparation tasks I had completed at MVP Studio before I moved onto the core team.
 
+As part of the core team, I worked on analysing property data.
+
 ### Onboarding task
 
 A set of basic SQL tasks to show competency.
@@ -14,6 +16,8 @@ Included here is the snowflake data warehouse design done in SQL.
 
 ### Advanced task
 
-A much larger and more involved full workflow, completed as part of a team. I worked on the crime data standardisation, which proved to be a large task. 
+A much larger and more involved full workflow, completed as part of a team. 
 
-The R code is presented here. The input data was transformed using excel before being input to R. However, the NSW data was too large to be pivoted in Excel so it was done in R.
+I worked on the crime data standardisation, which proved to be a large task. The R code is presented here. The input data was transformed using excel before being input to R. However, the NSW data was too large to be pivoted in Excel so it was done in R. 
+
+
